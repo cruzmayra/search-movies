@@ -13,7 +13,8 @@ class MovieList extends React.Component {
         {
           movies.map(movie => {
             return <div className='MovieList-item' key={movie.imdbID}>
-              <Movie 
+              <Movie
+              id={movie.imdbID}
               title={movie.Title}
               year={movie.Year}
               poster={movie.Poster} />
