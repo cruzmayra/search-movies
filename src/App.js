@@ -24,6 +24,12 @@ class App extends Component {
 
   render() {
     const {results} = this.state
+    const url = new URL(document.location)
+    const hasId = url.searchParams.has('id')
+
+    if ( hasId) {
+      return <Detail id={url.searchParams.get('id')}/>
+    }
     return (
       <div className="App">
         <Title>Search Movies</Title>
