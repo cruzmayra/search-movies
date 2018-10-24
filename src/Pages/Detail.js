@@ -21,7 +21,7 @@ class Detail extends React.Component {
       .then(movie => {
         this.setState({movie})
       })
-  }
+  } 
 
   goBack = () => {
     window.history.back()
