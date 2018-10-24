@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css'
+
+// Components
+import Title from './Components/Title'
+import SearchForm from './Components/SearchForm'
+import MovieList from './Components/MovieList'
+import Detail from './Pages/Detail'
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      results: []
+    }
+  }
+
+  handleResults = (results) => {
+    this.setState({
+      results
+    })
+  }
+
   render() {
+    const {results} = this.state
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Title>Search Movies</Title>
+        <div className='SearchForm-wrapper'>
+          <SearchForm onResults={this.handleResults} />
+        </div>
+        {
+          results.length === 0
+            ? <p>Sin resultados</p>
+            : <MovieList movies={results} />
+        }
       </div>
     );
   }
