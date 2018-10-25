@@ -1,7 +1,7 @@
 import React from 'react'
-import Title from '../Components/Title'
-import SearchForm from '../Components/SearchForm'
-import MovieList from '../Components/MovieList'
+import Title from './Components/Title'
+import SearchForm from './Components/SearchForm'
+import MovieList from './Components/MovieList'
 import axios from 'axios'
 
 const API_KEY = 'e2a13753'

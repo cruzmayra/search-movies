@@ -5,7 +5,7 @@ import 'bulma/css/bulma.css'
 
 // Components
 import Home from './Pages/Home'
-import Detail from './Pages/Detail'
+import Detail from './Pages/DetailMovie'
 
 class App extends Component {
 

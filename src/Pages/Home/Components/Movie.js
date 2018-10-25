@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import DontFound from '../image-not-found.png'
+import DontFound from '../../../image-not-found.png'
 
 class Movie extends React.Component {
   render () {
