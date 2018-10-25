@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 
 const API_KEY = 'e2a13753'
 
@@ -16,11 +17,13 @@ class Detail extends React.Component {
   }
 
   fetchMovie = (id) => {
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
-      .then(res => res.json())
-      .then(movie => {
-        this.setState({movie})
-      })
+    axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
+    .then(res => {
+      this.setState({movie: res.data})
+    })
+    .catch(error => {
+      console.log(error)
+    })
   } 
 
   goBack = () => {

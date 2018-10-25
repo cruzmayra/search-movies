@@ -2,6 +2,7 @@ import React from 'react'
 import Title from '../Components/Title'
 import SearchForm from '../Components/SearchForm'
 import MovieList from '../Components/MovieList'
+import axios from 'axios'
 
 const API_KEY = 'e2a13753'
 
@@ -25,17 +26,16 @@ class Home extends React.Component {
     e.preventDefault()
     const {inputMovie} = this.state
 
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputMovie}`)
-      .then(res => res.json())
-      .catch(error => console.log(error))
-      .then(results => {
-        if(results.Error) {
-          this.setState({error: results.Error, results: []})
-        } else {
-          const {Search} = results
-          this.setState({error: '', results: Search})
-        }
-      })
+    axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputMovie}`)
+    .then(res => {
+      if (res.data.Error) {
+        this.setState({error: res.data.Error, results: []})
+      } else { 
+        const {Search} = res.data
+        this.setState({error: '', results: Search})
+      }
+    })
+    .catch(error => console.log(error))
   }
 
   render () {
