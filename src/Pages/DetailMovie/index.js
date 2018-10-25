@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+import {ButtonBackToHome} from '../../Commons'
 
 const API_KEY = 'e2a13753'
 
@@ -24,10 +25,6 @@ class Detail extends React.Component {
     .catch(error => {
       console.log(error)
     })
-  } 
-
-  goBack = () => {
-    window.history.back()
   }
 
   render () {
@@ -35,7 +32,7 @@ class Detail extends React.Component {
     return (
       <div className='detail-movie'>
         <div className='back-container'>
-          <button className="button is-link" onClick={this.goBack}>Regresar</button>          
+          <ButtonBackToHome />
         </div>
         <div className='movie-info'>
           <h1 className="title">{Title}</h1>

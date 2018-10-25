@@ -6,6 +6,7 @@ import 'bulma/css/bulma.css'
 // Components
 import Home from './Pages/Home'
 import Detail from './Pages/DetailMovie'
+import {NotFound} from './Commons'
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/detail/:id' component={Detail} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     );
