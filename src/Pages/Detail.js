@@ -30,13 +30,17 @@ class Detail extends React.Component {
   render () {
     const {Title, Poster, Actors, Metascore, Plot} = this.state.movie
     return (
-      <div>
-        <button onClick={this.goBack}>Regresar</button>
-        <h1>{Title}</h1>
-        <img src={Poster} alt={`${Title} poster`}/>
-        <h3>{Actors}</h3>
-        <p>Score: <span>{Metascore}</span></p>
-        <p>{Plot}</p>
+      <div className='detail-movie'>
+        <div className='back-container'>
+          <button className="button is-link" onClick={this.goBack}>Regresar</button>          
+        </div>
+        <div className='movie-info'>
+          <h1 className="title">{Title}</h1>
+          <img src={Poster} alt={`${Title} poster`}/>
+          <h3><strong>Actors:</strong> {Actors}</h3>
+          <p><strong>Score:</strong> {Metascore}</p>
+          <p><strong>Synopsis:</strong> {Plot}</p>
+        </div>
       </div>
     )
   }
