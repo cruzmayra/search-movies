@@ -3,31 +3,52 @@ import Title from '../Components/Title'
 import SearchForm from '../Components/SearchForm'
 import MovieList from '../Components/MovieList'
 
+const API_KEY = 'e2a13753'
+
 class Home extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      results: []
+      inputMovie: '',
+      results: [],
+      error: ''
     }
   }
 
-  handleResults = (results) => {
+  handleChange = (e) => {
     this.setState({
-      results
+      inputMovie: e.target.value
     })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const {inputMovie} = this.state
+
+    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputMovie}`)
+      .then(res => res.json())
+      .catch(error => console.log(error))
+      .then(results => {
+        if(results.Error) {
+          this.setState({error: results.Error, results: []})
+        } else {
+          const {Search} = results
+          this.setState({error: '', results: Search})
+        }
+      })
+  }
+
   render () {
-    const {results} = this.state
+    const {results, error} = this.state
     return (
       <div>
         <Title>Search Movies</Title>
         <div className='SearchForm-wrapper'>
-          <SearchForm onResults={this.handleResults} />
+          <SearchForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
         </div>
         {
-          results.length === 0
-            ? <p>Sin resultados</p>
+          error !== ''
+            ? <p>{error}</p>
             : <MovieList movies={results} />
         }
       </div>

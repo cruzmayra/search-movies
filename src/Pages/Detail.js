@@ -11,7 +11,7 @@ class Detail extends React.Component {
     }
   }
   componentDidMount () {
-    const {id} = this.props
+    const {id} = this.props.match.params
     this.fetchMovie(id)
   }
 
@@ -43,7 +43,12 @@ class Detail extends React.Component {
 }
 
 Detail.propTypes = {
-  id: PropTypes.string
+  match: PropTypes.shape({
+    params: PropTypes.object,
+    isExact: PropTypes.bool,
+    path: PropTypes.string,
+    url:PropTypes.string
+  })
 }
 
 export default Detail
