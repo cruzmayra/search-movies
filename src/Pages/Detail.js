@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 
 const API_KEY = 'e2a13753'
 
@@ -11,16 +12,18 @@ class Detail extends React.Component {
     }
   }
   componentDidMount () {
-    const {id} = this.props
+    const {id} = this.props.match.params
     this.fetchMovie(id)
   }
 
   fetchMovie = (id) => {
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
-      .then(res => res.json())
-      .then(movie => {
-        this.setState({movie})
-      })
+    axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
+    .then(res => {
+      this.setState({movie: res.data})
+    })
+    .catch(error => {
+      console.log(error)
+    })
   } 
 
   goBack = () => {
@@ -30,20 +33,29 @@ class Detail extends React.Component {
   render () {
     const {Title, Poster, Actors, Metascore, Plot} = this.state.movie
     return (
-      <div>
-        <button onClick={this.goBack}>Regresar</button>
-        <h1>{Title}</h1>
-        <img src={Poster} alt={`${Title} poster`}/>
-        <h3>{Actors}</h3>
-        <p>Score: <span>{Metascore}</span></p>
-        <p>{Plot}</p>
+      <div className='detail-movie'>
+        <div className='back-container'>
+          <button className="button is-link" onClick={this.goBack}>Regresar</button>          
+        </div>
+        <div className='movie-info'>
+          <h1 className="title">{Title}</h1>
+          <img src={Poster} alt={`${Title} poster`}/>
+          <h3><strong>Actors:</strong> {Actors}</h3>
+          <p><strong>Score:</strong> {Metascore}</p>
+          <p><strong>Synopsis:</strong> {Plot}</p>
+        </div>
       </div>
     )
   }
 }
 
 Detail.propTypes = {
-  id: PropTypes.string
+  match: PropTypes.shape({
+    params: PropTypes.object,
+    isExact: PropTypes.bool,
+    path: PropTypes.string,
+    url:PropTypes.string
+  })
 }
 
 export default Detail

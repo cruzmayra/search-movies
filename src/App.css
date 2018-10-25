@@ -12,10 +12,31 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 30px auto;
   padding: 16px;
+  width: 80%;
 }
 
 .MovieList-item {
+  border: 1px solid #265ACC;
+  border-radius: 5px;
   margin-bottom: 24px;
-  width: 48%;
+  width: 280px;
+}
+
+.MovieList-item:hover {
+  border: 2px solid #265ACC;
+}
+
+.detail-movie {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.back-container {
+  text-align: left;
+}
+
+.movie-info {
+  margin: 30px 0;
 }
