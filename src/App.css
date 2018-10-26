@@ -1,5 +1,5 @@
 .App {
-  padding-top: 36px;
+  /* padding-top: 36px; */
   text-align: center;
 }
 
@@ -39,4 +39,9 @@
 
 .movie-info {
   margin: 30px 0;
+}
+
+form {
+  margin: 30px auto;
+  width: 70%;
 }

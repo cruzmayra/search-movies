@@ -29,6 +29,7 @@ class Detail extends React.Component {
 
   render () {
     const {Title, Poster, Actors, Metascore, Plot} = this.state.movie
+    console.log(this.state.movie)
     return (
       <div className='detail-movie'>
         <div className='back-container'>

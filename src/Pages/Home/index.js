@@ -1,5 +1,4 @@
 import React from 'react'
-import Title from './Components/Title'
 import SearchForm from './Components/SearchForm'
 import MovieList from './Components/MovieList'
 import axios from 'axios'
@@ -14,6 +13,20 @@ class Home extends React.Component {
       results: [],
       error: ''
     }
+  }
+
+  componentDidMount () {
+    axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&page=1`)
+    .then(res => {
+      console.log(res)
+      // if (res.data.Error) {
+      //   this.setState({error: res.data.Error, results: []})
+      // } else { 
+      //   const {Search} = res.data
+      //   this.setState({error: '', results: Search})
+      // }
+    })
+    .catch(error => console.log(error))
   }
 
   handleChange = (e) => {
@@ -39,17 +52,20 @@ class Home extends React.Component {
   }
 
   render () {
+    console.log(this.state.results)
     const {results, error} = this.state
     return (
       <div>
-        <Title>Search Movies</Title>
         <div className='SearchForm-wrapper'>
           <SearchForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
         </div>
         {
           error !== ''
             ? <p>{error}</p>
-            : <MovieList movies={results} />
+            : <div>
+              <h3 className="subtitle is-3">Recientes</h3>
+              <MovieList movies={results} />
+            </div>
         }
       </div>
     )
