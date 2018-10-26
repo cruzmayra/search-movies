@@ -4,6 +4,7 @@ import MovieList from './Components/MovieList'
 import axios from 'axios'
 
 const API_KEY = 'e2a13753'
+const API_KEY_DOS = 'c350d0d39ba6d9df0e2663698d7493d9'
 
 class Home extends React.Component {
   constructor (props) {
@@ -16,15 +17,14 @@ class Home extends React.Component {
   }
 
   componentDidMount () {
-    axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&page=1`)
+    let todayDate = new Date();
+    let today = todayDate.getFullYear() + '-' + (todayDate.getMonth() + 1) + '-' + todayDate.getDate();
+    let oneMonthAgo = (todayDate.getMonth() === 0 ? todayDate.getFullYear() - 1 : todayDate.getFullYear()) + '-' + (todayDate.getMonth() === 0 ? todayDate.getMonth() + 12 : todayDate.getMonth()) + '-' + todayDate.getDate();
+
+    axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY_DOS}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${oneMonthAgo}&primary_release_date.lte=${today}`)
     .then(res => {
-      console.log(res)
-      // if (res.data.Error) {
-      //   this.setState({error: res.data.Error, results: []})
-      // } else { 
-      //   const {Search} = res.data
-      //   this.setState({error: '', results: Search})
-      // }
+      const {results} = res.data
+      this.setState({results})
     })
     .catch(error => console.log(error))
   }
