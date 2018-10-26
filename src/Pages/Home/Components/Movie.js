@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import DontFound from '../../../image-not-found.png'
+// import DontFound from '../../../image-not-found.png'
 
 class Movie extends React.Component {
   render () {
@@ -9,12 +9,8 @@ class Movie extends React.Component {
     return (
       <Link to={`/detail/${id}`} className="card">
         <div className="card-image">
-          <figure className="image is-4by3">
-            {
-              poster === 'N/A'
-              ? <img src={DontFound} alt='poster not found' />
-              : <img src={poster} alt={`${title} poster`} />
-            }
+          <figure className="image is-4by5">
+            <img src={`https://image.tmdb.org/t/p/original${poster}`} alt={`${title} poster`} />
           </figure>
         </div>
         <div className="card-content">
@@ -33,7 +29,7 @@ class Movie extends React.Component {
 export default Movie
 
 Movie.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   title: PropTypes.string,
   year: PropTypes.string,
   poster: PropTypes.string
