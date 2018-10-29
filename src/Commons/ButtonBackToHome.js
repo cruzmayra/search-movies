@@ -1,12 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const ButtonBackToHome = () => {
+const ButtonBackToHome = ({handleClick}) => {
   return (
-    <button className="button is-primary">
-    <Link to='/'>
+    <button className="button is-primary" onClick={handleClick}>
       Regresar al Home
-    </Link>
     </button>
   )
 }

@@ -6,7 +6,7 @@ const NotFound = () => {
     <div>
       <p className="title is-1">Error 404</p>
       <p className="subtitle is-3">Página no encontrada</p>
-      <ButtonBackToHome />
+      <ButtonBackToHome handleClick={() => window.location.href = '/'} />
     </div>
   )
 }

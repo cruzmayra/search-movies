@@ -3,7 +3,7 @@ import SearchForm from './Components/SearchForm'
 import MovieList from './Components/MovieList'
 import axios from 'axios'
 
-const API_KEY = 'e2a13753'
+// const API_KEY = 'e2a13753'
 const API_KEY_DOS = 'c350d0d39ba6d9df0e2663698d7493d9'
 
 class Home extends React.Component {
@@ -17,6 +17,10 @@ class Home extends React.Component {
   }
 
   componentDidMount () {
+    this.getNewMovies()
+  }
+
+  getNewMovies () {
     let todayDate = new Date();
     let today = todayDate.getFullYear() + '-' + (todayDate.getMonth() + 1) + '-' + todayDate.getDate();
     let oneMonthAgo = (todayDate.getMonth() === 0 ? todayDate.getFullYear() - 1 : todayDate.getFullYear()) + '-' + (todayDate.getMonth() === 0 ? todayDate.getMonth() + 12 : todayDate.getMonth()) + '-' + todayDate.getDate();
@@ -39,20 +43,15 @@ class Home extends React.Component {
     e.preventDefault()
     const {inputMovie} = this.state
 
-    axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputMovie}`)
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY_DOS}&query=${inputMovie}`)
     .then(res => {
-      if (res.data.Error) {
-        this.setState({error: res.data.Error, results: []})
-      } else { 
-        const {Search} = res.data
-        this.setState({error: '', results: Search})
-      }
+      const {results} = res.data
+      this.setState({results})
     })
     .catch(error => console.log(error))
   }
 
   render () {
-    console.log(this.state.results)
     const {results, error} = this.state
     return (
       <div>

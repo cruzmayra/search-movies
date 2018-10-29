@@ -18,15 +18,14 @@
 }
 
 .MovieList-item {
-  border: 1px solid #265ACC;
+  /* border: 1px solid #265ACC; */
   border-radius: 5px;
+  cursor: pointer;
   margin-bottom: 24px;
   width: 280px;
 }
 
-.MovieList-item:hover {
-  border: 2px solid #265ACC;
-}
+
 
 .detail-movie {
   margin: 0 auto;
