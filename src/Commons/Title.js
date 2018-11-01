@@ -6,4 +6,4 @@ const Title = ({children}) => {
   )
 }
 
-export default Title
+export {Title}

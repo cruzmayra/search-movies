@@ -25,8 +25,6 @@
   width: 280px;
 }
 
-
-
 .detail-movie {
   margin: 0 auto;
   width: 80%;
@@ -37,7 +35,40 @@
 }
 
 .movie-info {
-  margin: 30px 0;
+  display: flex;
+  min-height: 200px;
+  max-width: 1800px;
+  width: 90%;
+  margin: 30px auto;
+}
+
+.info-panel-izq {
+  background: blanchedalmond;
+  display: flex;
+  justify-content: center;
+  min-height: 200px;
+  max-width: 900px;
+  width: 50%;
+}
+
+div.info-panel-izq > figure {
+  background: red;
+  display: flex;
+  max-width: 600px;
+  width: 80%; 
+}
+
+.info-panel-izq > figure > img {
+  align-self: center;
+  max-height: 500px;
+  width: 100%;
+}
+
+.info-panel-der {
+  background: aquamarine;
+  min-height: 200px;
+  max-width: 900px;
+  width: 50%;
 }
 
 form {

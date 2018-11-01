@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import {ButtonBackToHome} from '../../Commons'
-import DontFound from '../../image-not-found.png'
+import Poster from './Components/Poster';
 
 // const API_KEY = 'e2a13753'
 const API_KEY_DOS = 'c350d0d39ba6d9df0e2663698d7493d9'
@@ -50,11 +50,16 @@ class Detail extends React.Component {
     console.log(this.state.cast)
     const {cast} = this.state.cast
     return (
-      <div className='detail-movie'>
-        <div className='back-container'>
-          <ButtonBackToHome handleClick={this.goToHome} />
-        </div>
+      <section className='detail-movie'>
         <div className='movie-info'>
+        <div className='info-panel-izq'>
+          <Poster source={poster_path} title={title}/>
+        </div>
+        <div className='info-panel-der'>
+          datos
+        </div>
+        </div>
+        {/* <div>
           <h1 className="title">{title}</h1>
           {
             poster_path === null
@@ -69,7 +74,9 @@ class Detail extends React.Component {
           <p><strong>Score:</strong> {vote_average}</p>
           <p><strong>Synopsis:</strong> {overview}</p>
         </div>
-      </div>
+        <ButtonBackToHome handleClick={this.goToHome} /> */}
+
+      </section>
     )
   }
 }
