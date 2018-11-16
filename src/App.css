@@ -65,7 +65,7 @@ div.info-panel-izq > figure {
 }
 
 .info-panel-der {
-  background: aquamarine;
+  /* background: aquamarine; */
   min-height: 200px;
   max-width: 900px;
   width: 50%;

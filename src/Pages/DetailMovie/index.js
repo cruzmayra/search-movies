@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import {ButtonBackToHome} from '../../Commons'
 import Poster from './Components/Poster';
+import Title from './Components/Title'
+import GenresList from './Components/GenresList'
 
 // const API_KEY = 'e2a13753'
 const API_KEY_DOS = 'c350d0d39ba6d9df0e2663698d7493d9'
@@ -48,7 +50,7 @@ class Detail extends React.Component {
   render () {
     const {title, poster_path, vote_average, overview, genres} = this.state.movie
     console.log(this.state.cast)
-    const {cast} = this.state.cast
+    const {cast} = this.state
     return (
       <section className='detail-movie'>
         <div className='movie-info'>
@@ -56,7 +58,11 @@ class Detail extends React.Component {
           <Poster source={poster_path} title={title}/>
         </div>
         <div className='info-panel-der'>
-          datos
+          <Title>{title}</Title>
+          <div className="content">
+            <p>{overview}</p>
+          </div>
+          <GenresList genres={genres} />
         </div>
         </div>
         {/* <div>
